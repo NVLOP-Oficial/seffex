@@ -118,6 +118,23 @@ footer img{height:36px;opacity:.4}
   footer{flex-direction:column;gap:14px;text-align:center;padding:24px}
 }
 
+.sets-label{font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:var(--text);margin:44px 0 18px}
+.sets-label a{color:var(--accent);text-decoration:none;font-size:13px;margin-left:6px}
+.sets{display:grid;grid-template-columns:2fr 1fr;gap:20px}
+.yt-lite{position:relative;aspect-ratio:16/9;background:#000;border:1px solid var(--border);border-radius:2px;overflow:hidden;align-self:start}
+.yt-lite>div{position:absolute;inset:0}
+.yt-lite img,.yt-lite iframe{width:100%;height:100%;object-fit:cover;border:0;display:block}
+.yt-lite .play{position:absolute;inset:0;width:100%;display:grid;place-items:center;background:linear-gradient(180deg,transparent 40%,rgba(13,16,32,.7));cursor:pointer;border:0}
+.yt-lite .play i{width:64px;height:64px;border-radius:50%;background:var(--accent);position:relative}
+.yt-lite .play i::after{content:'';position:absolute;left:25px;top:19px;border-left:19px solid var(--bg);border-top:13px solid transparent;border-bottom:13px solid transparent}
+.yt-list{position:relative;min-height:220px}
+.yt-scroll{position:absolute;inset:0;overflow-y:auto;display:flex;flex-direction:column;gap:10px;scrollbar-width:thin;padding-right:4px}
+.yt-item{display:flex;align-items:center;gap:14px;padding:8px;background:var(--card);border:1px solid var(--border);border-radius:2px;text-align:left;color:var(--text);cursor:pointer;flex-shrink:0;font:inherit;transition:border-color .2s}
+.yt-item:hover,.yt-item.on{border-color:var(--accent)}
+.yt-item img{width:108px;aspect-ratio:16/9;object-fit:cover;flex-shrink:0}
+.yt-item strong{display:block;font-size:13px;font-weight:500;margin-bottom:4px}
+.yt-item em{font-style:normal;font-size:11px;color:var(--dim);line-height:1.4}
+@media(max-width:900px){.sets{grid-template-columns:1fr}.yt-scroll{position:static;max-height:360px}}
 /* logo + extras Pro (Dusk) */
 .nav-logo{flex:none;margin-right:24px}
 .nav-logo img{height:22px;display:block}
@@ -252,15 +269,28 @@ footer img{height:36px;opacity:.4}
         <div class="player-bar"><span class="play-btn"></span><span class="listen">Escuchar ↗</span></div>
       </div>
     </a>
-    <a class="player" style="margin-top:16px" href="https://www.youtube.com/@Seffex-sfx" target="_blank" rel="noopener">
-      <div class="player-cover" style="background-image:url('assets/g07.jpg')"></div>
-      <div class="player-info">
-        <div class="player-plat">YouTube</div>
-        <div class="player-title">SEFFEX</div>
-        <div class="player-artist">Sets en video · Canal oficial</div>
-        <div class="player-bar"><span class="play-btn"></span><span class="listen">Escuchar ↗</span></div>
-      </div>
-    </a>
+    <p class="sets-label">Video sets · <a href="https://www.youtube.com/@Seffex-sfx" target="_blank" rel="noopener">YouTube ↗</a></p>
+    <div class="sets">
+      <div class="yt-lite" id="set-yt"><div><img src="https://i.ytimg.com/vi/eG6RW5qvLQk/maxresdefault.jpg" alt="" loading="lazy"><button class="play" type="button" id="set-play" data-id="eG6RW5qvLQk" aria-label="Reproducir set"><i></i></button></div></div>
+      <div class="yt-list"><div class="yt-scroll">
+        <button class="yt-item on" type="button" data-id="eG6RW5qvLQk">
+          <img src="https://i.ytimg.com/vi/eG6RW5qvLQk/mqdefault.jpg" alt="" loading="lazy">
+          <span><strong>Live at Lignee</strong><em>House & Indie Dance · 1:01:34</em></span>
+        </button>
+        <button class="yt-item" type="button" data-id="z0LLkAvtY_Y">
+          <img src="https://i.ytimg.com/vi/z0LLkAvtY_Y/mqdefault.jpg" alt="" loading="lazy">
+          <span><strong>Parkboys #001</strong><em>Progressive, Melodic House & Techno · 1:11:50</em></span>
+        </button>
+        <button class="yt-item" type="button" data-id="Uw-4myS0Vnw">
+          <img src="https://i.ytimg.com/vi/Uw-4myS0Vnw/mqdefault.jpg" alt="" loading="lazy">
+          <span><strong>Libra Rave Set #003</strong><em>Deep, Disco & Indie Dance</em></span>
+        </button>
+        <button class="yt-item" type="button" data-id="putbWcvuhFk">
+          <img src="https://i.ytimg.com/vi/putbWcvuhFk/mqdefault.jpg" alt="" loading="lazy">
+          <span><strong>Travel Frequencies #001</strong><em>Bariloche · Progressive & Melodic</em></span>
+        </button>
+      </div></div>
+    </div>
   </div>
 </div>
 
@@ -283,6 +313,18 @@ footer img{height:36px;opacity:.4}
   <img src="assets/logo.png" alt="SEFFEX" style="height:22px">
 </footer>
 
+<script>
+(function(){
+  var box=document.getElementById('set-yt');
+  function load(id){var f=document.createElement('iframe');
+    f.src='https://www.youtube.com/embed/'+id+'?autoplay=1&rel=0&playsinline=1'+(/^https?:/.test(location.protocol)?'&origin='+encodeURIComponent(location.origin):'');
+    f.referrerPolicy='strict-origin-when-cross-origin';f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';f.allowFullscreen=true;f.title='SEFFEX';
+    var h=box.firstElementChild;h.innerHTML='';h.appendChild(f);}
+  document.getElementById('set-play').addEventListener('click',function(e){load(e.currentTarget.dataset.id);});
+  document.querySelectorAll('.yt-item').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('.yt-item').forEach(function(x){x.classList.remove('on');});b.classList.add('on');load(b.dataset.id);});});
+})();
+</script>
 <div class="draft-tag">Borrador · Presskit Pro</div>
 </body>
 </html>
