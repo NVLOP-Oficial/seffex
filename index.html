@@ -167,7 +167,19 @@ footer img{height:36px;opacity:.4}
   .player-cover{width:84px;height:84px}
   .booking-card{min-width:0;width:100%}
 }
+
+/* nvlop-credit */
+.nvlop-credit{--nv-ink:var(--accent);--nv-dim:var(--dim);font-size:10px;display:inline-flex;align-items:center;gap:10px;text-decoration:none;text-transform:uppercase;white-space:nowrap;opacity:.85;transition:opacity .25s}
+.nvlop-credit .nv-by{font-size:.9em;letter-spacing:.24em;color:var(--nv-dim);font-weight:400}
+.nvlop-credit .nv-mark{width:11px;height:11px;position:relative;flex:none;color:var(--nv-ink)}
+.nvlop-credit .nv-mark::before,.nvlop-credit .nv-mark::after{content:"";position:absolute;inset:0}
+.nvlop-credit .nv-mark::before{border:1.5px solid currentColor;transform:rotate(45deg)}
+.nvlop-credit .nv-mark::after{background:currentColor;border-radius:50%;transform:scale(.45)}
+.nvlop-credit .nv-word{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:900;font-size:1.55em;letter-spacing:.18em;line-height:1;color:var(--nv-ink);transition:letter-spacing .25s}
+.nvlop-credit:hover{opacity:1}
+.nvlop-credit:hover .nv-word{letter-spacing:.26em}
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&text=NVLOP&display=swap" rel="stylesheet"><!-- nvlop-credit -->
 </head>
 <body>
 
@@ -311,7 +323,7 @@ footer img{height:36px;opacity:.4}
 <footer>
   <p>© 2026 SEFFEX · La Plata, Argentina</p>
   <img src="assets/logo.png" alt="SEFFEX" style="height:22px">
-</footer>
+<a class="nvlop-credit" href="https://ecosistemanvlop.com" target="_blank" rel="noopener" aria-label="Powered by NVLOP"><span class="nv-by">Powered by</span><i class="nv-mark"></i><b class="nv-word">NVLOP</b></a></footer>
 
 <script>
 (function(){
