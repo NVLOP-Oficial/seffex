@@ -87,6 +87,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:cen
 .rider-card-tag{font-family:'Playfair Display',serif;font-style:italic;font-size:12px;color:var(--accent);margin-bottom:6px}
 .rider-card-name{font-family:'Playfair Display',serif;font-weight:600;font-size:16px;color:var(--text);margin-bottom:4px}
 .rider-card-desc{font-size:12px;color:var(--dim);font-weight:300;line-height:1.5}
+.rider-download{display:inline-block;margin-top:8px;padding:14px 30px;border:1px solid var(--accent);color:var(--accent);font-size:11px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all .2s}
+.rider-download:hover{background:var(--accent);color:var(--bg)}
 
 .contact-wrap{text-align:center;padding:90px 48px;border-top:1px solid var(--border)}
 .contact-title{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(48px,7vw,96px);margin-bottom:14px}
@@ -118,6 +120,17 @@ footer img{height:36px;opacity:.4}
   footer{flex-direction:column;gap:14px;text-align:center;padding:24px}
 }
 
+/* nvlop-credit */
+.nvlop-credit{--nv-ink:var(--accent);--nv-dim:var(--dim);font-size:10px;display:inline-flex;align-items:center;gap:10px;text-decoration:none;text-transform:uppercase;white-space:nowrap;opacity:.85;transition:opacity .25s}
+.nvlop-credit .nv-by{font-size:.9em;letter-spacing:.24em;color:var(--nv-dim);font-weight:400}
+.nvlop-credit .nv-mark{width:11px;height:11px;position:relative;flex:none;color:var(--nv-ink)}
+.nvlop-credit .nv-mark::before,.nvlop-credit .nv-mark::after{content:"";position:absolute;inset:0}
+.nvlop-credit .nv-mark::before{border:1.5px solid currentColor;transform:rotate(45deg)}
+.nvlop-credit .nv-mark::after{background:currentColor;border-radius:50%;transform:scale(.45)}
+.nvlop-credit .nv-word{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:900;font-size:1.55em;letter-spacing:.18em;line-height:1;color:var(--nv-ink);transition:letter-spacing .25s}
+.nvlop-credit:hover{opacity:1}
+.nvlop-credit:hover .nv-word{letter-spacing:.26em}
+
 .sets-label{font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:var(--text);margin:44px 0 18px}
 .sets-label a{color:var(--accent);text-decoration:none;font-size:13px;margin-left:6px}
 .sets{display:grid;grid-template-columns:2fr 1fr;gap:20px}
@@ -135,6 +148,15 @@ footer img{height:36px;opacity:.4}
 .yt-item strong{display:block;font-size:13px;font-weight:500;margin-bottom:4px}
 .yt-item em{font-style:normal;font-size:11px;color:var(--dim);line-height:1.4}
 @media(max-width:900px){.sets{grid-template-columns:1fr}.yt-scroll{position:static;max-height:360px}}
+.rot-block{margin-top:34px}
+.rot-block:first-of-type{margin-top:8px}
+.rot-head{display:flex;align-items:baseline;gap:18px;margin-bottom:14px}
+.rot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.rot-item{position:relative;aspect-ratio:3/4;overflow:hidden;border:1px solid var(--border);border-radius:2px;background:var(--card)}
+.rot-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.12);filter:brightness(.9) saturate(1.1);transition:opacity 1.4s ease,transform 5.5s ease-out}
+.rot-item img.on{opacity:1;transform:scale(1)}
+@media(max-width:768px){.rot-grid{grid-template-columns:1fr 1fr;gap:8px}}
+@media(prefers-reduced-motion:reduce){.rot-item img{transition:opacity .01s}}
 /* logo + extras Pro (Dusk) */
 .nav-logo{flex:none;margin-right:24px}
 .nav-logo img{height:22px;display:block}
@@ -167,17 +189,6 @@ footer img{height:36px;opacity:.4}
   .player-cover{width:84px;height:84px}
   .booking-card{min-width:0;width:100%}
 }
-
-/* nvlop-credit */
-.nvlop-credit{--nv-ink:var(--accent);--nv-dim:var(--dim);font-size:10px;display:inline-flex;align-items:center;gap:10px;text-decoration:none;text-transform:uppercase;white-space:nowrap;opacity:.85;transition:opacity .25s}
-.nvlop-credit .nv-by{font-size:.9em;letter-spacing:.24em;color:var(--nv-dim);font-weight:400}
-.nvlop-credit .nv-mark{width:11px;height:11px;position:relative;flex:none;color:var(--nv-ink)}
-.nvlop-credit .nv-mark::before,.nvlop-credit .nv-mark::after{content:"";position:absolute;inset:0}
-.nvlop-credit .nv-mark::before{border:1.5px solid currentColor;transform:rotate(45deg)}
-.nvlop-credit .nv-mark::after{background:currentColor;border-radius:50%;transform:scale(.45)}
-.nvlop-credit .nv-word{font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-weight:900;font-size:1.55em;letter-spacing:.18em;line-height:1;color:var(--nv-ink);transition:letter-spacing .25s}
-.nvlop-credit:hover{opacity:1}
-.nvlop-credit:hover .nv-word{letter-spacing:.26em}
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@900&text=NVLOP&display=swap" rel="stylesheet"><!-- nvlop-credit -->
 </head>
@@ -255,16 +266,14 @@ footer img{height:36px;opacity:.4}
 
 <div class="section" id="gallery">
   <div class="sec-label">Galería</div>
-  <div class="gallery-grid">
-    <div class="gal-item"><img src="assets/g01.jpg" alt="" loading="lazy"></div>
-    <div class="gal-item"><img src="assets/g02.jpg" alt="" loading="lazy"></div>
-    <div class="gal-item"><img src="assets/g03.jpg" alt="" loading="lazy"></div>
-    <div class="gal-item"><img src="assets/g04.jpg" alt="" loading="lazy"></div>
-    <div class="gal-item"><img src="assets/g05.jpg" alt="" loading="lazy"></div>
-    <div class="gal-item"><img src="assets/g06.jpg" alt="" loading="lazy"></div>
-    <div class="gal-item"><img src="assets/g07.jpg" alt="" loading="lazy"></div>
-    <div class="gal-item"><img src="assets/g08.jpg" alt="" loading="lazy"></div>
-    <div class="gal-item"><img src="assets/g09.jpg" alt="" loading="lazy"></div>
+  
+  <div class="rot-block">
+    <div class="rot-head"><span class="event-name">En vivo</span><span class="event-venue">Cabinas y eventos</span></div>
+    <div class="rot-grid" data-pool="live"><div class="rot-item"><img class="on" src="assets/e1_1.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/e1_2.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/e1_3.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/e1_4.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/e1_5.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/e2_1.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div></div>
+  </div>
+  <div class="rot-block">
+    <div class="rot-head"><span class="event-name">Estudio</span><span class="event-venue">Sesión de fotos</span></div>
+    <div class="rot-grid" data-pool="studio"><div class="rot-item"><img class="on" src="assets/g01.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/g02.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/g03.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/g04.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/g05.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/g06.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div></div>
   </div>
 </div>
 
@@ -335,6 +344,29 @@ footer img{height:36px;opacity:.4}
   document.getElementById('set-play').addEventListener('click',function(e){load(e.currentTarget.dataset.id);});
   document.querySelectorAll('.yt-item').forEach(function(b){b.addEventListener('click',function(){
     document.querySelectorAll('.yt-item').forEach(function(x){x.classList.remove('on');});b.classList.add('on');load(b.dataset.id);});});
+})();
+</script>
+<script>
+(function(){
+  var pools={live:["assets/e1_1.jpg","assets/e1_2.jpg","assets/e1_3.jpg","assets/e1_4.jpg","assets/e1_5.jpg","assets/e2_1.jpg","assets/e2_2.jpg","assets/e2_3.jpg","assets/e2_4.jpg","assets/e2_5.jpg","assets/e3_1.jpg","assets/e3_2.jpg","assets/e4_1.jpg","assets/e4_2.jpg","assets/e4_3.jpg","assets/e4_4.jpg","assets/e4_5.jpg","assets/e4_6.jpg"],studio:["assets/g01.jpg","assets/g02.jpg","assets/g03.jpg","assets/g04.jpg","assets/g05.jpg","assets/g06.jpg","assets/g07.jpg","assets/g08.jpg","assets/g09.jpg","assets/g10.jpg"]};
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.rot-grid').forEach(function(g,gi){
+    var pool=pools[g.dataset.pool],items=g.querySelectorAll('.rot-item'),visible=true;
+    if(window.IntersectionObserver)new IntersectionObserver(function(e){visible=e[0].isIntersecting;}).observe(g);
+    function shown(){return Array.prototype.map.call(g.querySelectorAll('img.on'),function(i){return i.getAttribute('src');});}
+    function swap(item){
+      var imgs=item.querySelectorAll('img'),cur=item.querySelector('img.on'),nxt=imgs[0]===cur?imgs[1]:imgs[0];
+      var inUse=shown(),free=pool.filter(function(s){return inUse.indexOf(s)<0;});
+      if(!free.length)return;
+      var pick=free[Math.floor(Math.random()*free.length)];
+      nxt.onload=function(){nxt.onload=null;nxt.classList.add('on');cur.classList.remove('on');};
+      nxt.src=pick;
+    }
+    if(calm)return;
+    items.forEach(function(item,i){
+      setTimeout(function(){setInterval(function(){if(visible&&!document.hidden)swap(item);},5200+gi*600);},1500+i*900+gi*400);
+    });
+  });
 })();
 </script>
 <div class="draft-tag">Borrador · Presskit Pro</div>
