@@ -149,19 +149,24 @@ footer img{height:36px;opacity:.4}
 .yt-item em{font-style:normal;font-size:11px;color:var(--dim);line-height:1.4}
 @media(max-width:900px){.sets{grid-template-columns:1fr}.yt-scroll{position:static;max-height:360px}}
 .rot-block{margin-top:34px}
-.rot-block:first-of-type{margin-top:8px}
 .rot-head{display:flex;align-items:baseline;gap:18px;margin-bottom:14px}
-.rot-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.rot-item{position:relative;aspect-ratio:3/4;overflow:hidden;border:1px solid var(--border);border-radius:2px;background:var(--card)}
-.rot-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.12);filter:brightness(.9) saturate(1.1);transition:opacity 1.4s ease,transform 5.5s ease-out}
-.rot-item img.on{opacity:1;transform:scale(1)}
-@media(max-width:768px){.rot-grid{grid-template-columns:1fr 1fr;gap:8px}}
-@media(prefers-reduced-motion:reduce){.rot-item img{transition:opacity .01s}}
+.hwall{--wg:16px;--rh:clamp(170px,24vw,300px);position:relative;left:50%;transform:translateX(-50%);width:min(94vw,1500px);-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.hrow{height:var(--rh);overflow:hidden}
+.hrow+.hrow{margin-top:var(--wg)}
+.htrack{display:flex;height:100%;width:max-content;will-change:transform;animation:wallL var(--d,90s) linear infinite}
+.hrow.rev .htrack{animation-direction:reverse}
+.htrack img{flex:none;height:100%;width:auto;margin-right:var(--wg);background:var(--card);border:1px solid var(--border);border-radius:2px;filter:brightness(.92) saturate(1.1)}
+.hwall:hover .htrack,.hwall.off .htrack{animation-play-state:paused}
+@keyframes wallL{to{transform:translateX(-50%)}}
+@media(max-width:768px){.hwall{--wg:10px;width:100vw}}
+@media(prefers-reduced-motion:reduce){.hwall{-webkit-mask-image:none;mask-image:none}.hrow{overflow-x:auto}.htrack{animation:none}}
 /* logo + extras Pro (Dusk) */
 .nav-logo{flex:none;margin-right:24px}
 .nav-logo img{height:22px;display:block}
 .hero-name img{height:clamp(54px,10vw,130px);display:block}
 .hero-bg{background-position:center 15%}
+.bio-photo{display:flex;justify-content:center}
+.bio-photo img{width:100%;max-width:440px;display:block;border:1px solid var(--border);border-radius:2px}
 .bio-text strong{color:var(--text);font-weight:500}
 .bio-quote{margin-top:34px;padding-left:22px;border-left:2px solid var(--accent);font-family:'Playfair Display',serif;font-style:italic;font-size:20px;line-height:1.6;color:var(--text)}
 .event-venue{font-size:13px;color:var(--dim);letter-spacing:1px}
@@ -231,12 +236,7 @@ footer img{height:36px;opacity:.4}
       <p>Influenciado por referentes como <strong>Juan Hansen, Colyn y Mazzeo Tec</strong>, continúa su búsqueda de un sonido hipnótico, emocional y, sobre todo, bailable.</p>
       <div class="bio-quote">“Un viaje de contrastes: atmósfera y ritmo en diálogo, con una energía física que mueve el cuerpo desde lo más profundo.”</div>
     </div>
-    <div class="bio-aside">
-      <div class="bio-stat"><div class="bio-stat-label">Base</div><div class="bio-stat-value">La Plata, Argentina</div></div>
-      <div class="bio-stat"><div class="bio-stat-label">Proyecto</div><div class="bio-stat-value">La Mansión</div></div>
-      <div class="bio-stat"><div class="bio-stat-label">Propuesta</div><div class="bio-stat-value">Un viaje de contrastes: atmósfera y ritmo en diálogo, con una energía física que mueve el cuerpo desde lo más profundo.</div></div>
-      <div class="bio-stat"><div class="bio-stat-label">Booking</div><div class="bio-stat-value"><a href="mailto:s.seffex@gmail.com">s.seffex@gmail.com</a></div></div>
-    </div>
+    <div class="bio-photo"><img src="assets/bio.jpg" alt="SEFFEX"></div>
   </div>
 </div>
 
@@ -245,11 +245,18 @@ footer img{height:36px;opacity:.4}
   
   <div class="rot-block">
     <div class="rot-head"><span class="event-name">En vivo</span><span class="event-venue">Cabinas y eventos</span></div>
-    <div class="rot-grid" data-pool="live"><div class="rot-item"><img class="on" src="assets/e1_1.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/e1_2.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/e1_3.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/e1_4.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/e1_5.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/e2_1.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div></div>
+    <div class="hwall">
+      <div class="hrow"><div class="htrack" style="--d:105s;animation-delay:-5s"><img src="assets/e1_1.jpg" width="734" height="1100" alt="" loading="lazy"><img src="assets/e1_4.jpg" width="701" height="1100" alt="" loading="lazy"><img src="assets/e2_2.jpg" width="733" height="1100" alt="" loading="lazy"><img src="assets/e2_5.jpg" width="733" height="1100" alt="" loading="lazy"><img src="assets/e4_1.jpg" width="1100" height="733" alt="" loading="lazy"><img src="assets/e4_4.jpg" width="1100" height="734" alt="" loading="lazy"><img src="assets/e1_1.jpg" width="734" height="1100" alt="" loading="lazy"><img src="assets/e1_4.jpg" width="701" height="1100" alt="" loading="lazy"><img src="assets/e2_2.jpg" width="733" height="1100" alt="" loading="lazy"><img src="assets/e2_5.jpg" width="733" height="1100" alt="" loading="lazy"><img src="assets/e4_1.jpg" width="1100" height="733" alt="" loading="lazy"><img src="assets/e4_4.jpg" width="1100" height="734" alt="" loading="lazy"><img src="assets/e1_1.jpg" width="734" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e1_4.jpg" width="701" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e2_2.jpg" width="733" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e2_5.jpg" width="733" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e4_1.jpg" width="1100" height="733" alt="" aria-hidden="true" loading="lazy"><img src="assets/e4_4.jpg" width="1100" height="734" alt="" aria-hidden="true" loading="lazy"><img src="assets/e1_1.jpg" width="734" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e1_4.jpg" width="701" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e2_2.jpg" width="733" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e2_5.jpg" width="733" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e4_1.jpg" width="1100" height="733" alt="" aria-hidden="true" loading="lazy"><img src="assets/e4_4.jpg" width="1100" height="734" alt="" aria-hidden="true" loading="lazy"></div></div>
+      <div class="hrow rev"><div class="htrack" style="--d:107s;animation-delay:-22s"><img src="assets/e1_2.jpg" width="734" height="1100" alt="" loading="lazy"><img src="assets/e1_5.jpg" width="733" height="1100" alt="" loading="lazy"><img src="assets/e2_3.jpg" width="733" height="1100" alt="" loading="lazy"><img src="assets/e3_1.jpg" width="1100" height="733" alt="" loading="lazy"><img src="assets/e4_2.jpg" width="1100" height="733" alt="" loading="lazy"><img src="assets/e4_5.jpg" width="825" height="1100" alt="" loading="lazy"><img src="assets/e1_2.jpg" width="734" height="1100" alt="" loading="lazy"><img src="assets/e1_5.jpg" width="733" height="1100" alt="" loading="lazy"><img src="assets/e2_3.jpg" width="733" height="1100" alt="" loading="lazy"><img src="assets/e3_1.jpg" width="1100" height="733" alt="" loading="lazy"><img src="assets/e4_2.jpg" width="1100" height="733" alt="" loading="lazy"><img src="assets/e4_5.jpg" width="825" height="1100" alt="" loading="lazy"><img src="assets/e1_2.jpg" width="734" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e1_5.jpg" width="733" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e2_3.jpg" width="733" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e3_1.jpg" width="1100" height="733" alt="" aria-hidden="true" loading="lazy"><img src="assets/e4_2.jpg" width="1100" height="733" alt="" aria-hidden="true" loading="lazy"><img src="assets/e4_5.jpg" width="825" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e1_2.jpg" width="734" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e1_5.jpg" width="733" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e2_3.jpg" width="733" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e3_1.jpg" width="1100" height="733" alt="" aria-hidden="true" loading="lazy"><img src="assets/e4_2.jpg" width="1100" height="733" alt="" aria-hidden="true" loading="lazy"><img src="assets/e4_5.jpg" width="825" height="1100" alt="" aria-hidden="true" loading="lazy"></div></div>
+      <div class="hrow"><div class="htrack" style="--d:108s;animation-delay:-39s"><img src="assets/e1_3.jpg" width="734" height="1100" alt="" loading="lazy"><img src="assets/e2_1.jpg" width="733" height="1100" alt="" loading="lazy"><img src="assets/e2_4.jpg" width="733" height="1100" alt="" loading="lazy"><img src="assets/e3_2.jpg" width="1100" height="733" alt="" loading="lazy"><img src="assets/e4_3.jpg" width="1100" height="734" alt="" loading="lazy"><img src="assets/e4_6.jpg" width="885" height="1100" alt="" loading="lazy"><img src="assets/e1_3.jpg" width="734" height="1100" alt="" loading="lazy"><img src="assets/e2_1.jpg" width="733" height="1100" alt="" loading="lazy"><img src="assets/e2_4.jpg" width="733" height="1100" alt="" loading="lazy"><img src="assets/e3_2.jpg" width="1100" height="733" alt="" loading="lazy"><img src="assets/e4_3.jpg" width="1100" height="734" alt="" loading="lazy"><img src="assets/e4_6.jpg" width="885" height="1100" alt="" loading="lazy"><img src="assets/e1_3.jpg" width="734" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e2_1.jpg" width="733" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e2_4.jpg" width="733" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e3_2.jpg" width="1100" height="733" alt="" aria-hidden="true" loading="lazy"><img src="assets/e4_3.jpg" width="1100" height="734" alt="" aria-hidden="true" loading="lazy"><img src="assets/e4_6.jpg" width="885" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e1_3.jpg" width="734" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e2_1.jpg" width="733" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e2_4.jpg" width="733" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/e3_2.jpg" width="1100" height="733" alt="" aria-hidden="true" loading="lazy"><img src="assets/e4_3.jpg" width="1100" height="734" alt="" aria-hidden="true" loading="lazy"><img src="assets/e4_6.jpg" width="885" height="1100" alt="" aria-hidden="true" loading="lazy"></div></div>
+    </div>
   </div>
   <div class="rot-block">
     <div class="rot-head"><span class="event-name">Estudio</span><span class="event-venue">Sesión de fotos</span></div>
-    <div class="rot-grid" data-pool="studio"><div class="rot-item"><img class="on" src="assets/g01.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/g02.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/g03.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/g04.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/g05.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div><div class="rot-item"><img class="on" src="assets/g06.jpg" alt="" loading="lazy"><img alt="" aria-hidden="true"></div></div>
+    <div class="hwall">
+      <div class="hrow"><div class="htrack" style="--d:132s;animation-delay:-5s"><img src="assets/g01.jpg" width="1100" height="811" alt="" loading="lazy"><img src="assets/g03.jpg" width="1100" height="733" alt="" loading="lazy"><img src="assets/g05.jpg" width="947" height="1100" alt="" loading="lazy"><img src="assets/g07.jpg" width="1100" height="733" alt="" loading="lazy"><img src="assets/g09.jpg" width="733" height="1100" alt="" loading="lazy"><img src="assets/g01.jpg" width="1100" height="811" alt="" loading="lazy"><img src="assets/g03.jpg" width="1100" height="733" alt="" loading="lazy"><img src="assets/g05.jpg" width="947" height="1100" alt="" loading="lazy"><img src="assets/g07.jpg" width="1100" height="733" alt="" loading="lazy"><img src="assets/g09.jpg" width="733" height="1100" alt="" loading="lazy"><img src="assets/g01.jpg" width="1100" height="811" alt="" aria-hidden="true" loading="lazy"><img src="assets/g03.jpg" width="1100" height="733" alt="" aria-hidden="true" loading="lazy"><img src="assets/g05.jpg" width="947" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/g07.jpg" width="1100" height="733" alt="" aria-hidden="true" loading="lazy"><img src="assets/g09.jpg" width="733" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/g01.jpg" width="1100" height="811" alt="" aria-hidden="true" loading="lazy"><img src="assets/g03.jpg" width="1100" height="733" alt="" aria-hidden="true" loading="lazy"><img src="assets/g05.jpg" width="947" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/g07.jpg" width="1100" height="733" alt="" aria-hidden="true" loading="lazy"><img src="assets/g09.jpg" width="733" height="1100" alt="" aria-hidden="true" loading="lazy"></div></div>
+      <div class="hrow rev"><div class="htrack" style="--d:82s;animation-delay:-22s"><img src="assets/g02.jpg" width="793" height="1100" alt="" loading="lazy"><img src="assets/g04.jpg" width="809" height="1100" alt="" loading="lazy"><img src="assets/g06.jpg" width="733" height="1100" alt="" loading="lazy"><img src="assets/g08.jpg" width="1100" height="733" alt="" loading="lazy"><img src="assets/g02.jpg" width="793" height="1100" alt="" loading="lazy"><img src="assets/g04.jpg" width="809" height="1100" alt="" loading="lazy"><img src="assets/g06.jpg" width="733" height="1100" alt="" loading="lazy"><img src="assets/g08.jpg" width="1100" height="733" alt="" loading="lazy"><img src="assets/g02.jpg" width="793" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/g04.jpg" width="809" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/g06.jpg" width="733" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/g08.jpg" width="1100" height="733" alt="" aria-hidden="true" loading="lazy"><img src="assets/g02.jpg" width="793" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/g04.jpg" width="809" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/g06.jpg" width="733" height="1100" alt="" aria-hidden="true" loading="lazy"><img src="assets/g08.jpg" width="1100" height="733" alt="" aria-hidden="true" loading="lazy"></div></div>
+    </div>
   </div>
 </div>
 
@@ -324,25 +331,9 @@ footer img{height:36px;opacity:.4}
 </script>
 <script>
 (function(){
-  var pools={live:["assets/e1_1.jpg","assets/e1_2.jpg","assets/e1_3.jpg","assets/e1_4.jpg","assets/e1_5.jpg","assets/e2_1.jpg","assets/e2_2.jpg","assets/e2_3.jpg","assets/e2_4.jpg","assets/e2_5.jpg","assets/e3_1.jpg","assets/e3_2.jpg","assets/e4_1.jpg","assets/e4_2.jpg","assets/e4_3.jpg","assets/e4_4.jpg","assets/e4_5.jpg","assets/e4_6.jpg"],studio:["assets/g01.jpg","assets/g02.jpg","assets/g03.jpg","assets/g04.jpg","assets/g05.jpg","assets/g06.jpg","assets/g07.jpg","assets/g08.jpg","assets/g09.jpg","assets/g10.jpg"]};
-  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
-  document.querySelectorAll('.rot-grid').forEach(function(g,gi){
-    var pool=pools[g.dataset.pool],items=g.querySelectorAll('.rot-item'),visible=true;
-    if(window.IntersectionObserver)new IntersectionObserver(function(e){visible=e[0].isIntersecting;}).observe(g);
-    function shown(){return Array.prototype.map.call(g.querySelectorAll('img.on'),function(i){return i.getAttribute('src');});}
-    function swap(item){
-      var imgs=item.querySelectorAll('img'),cur=item.querySelector('img.on'),nxt=imgs[0]===cur?imgs[1]:imgs[0];
-      var inUse=shown(),free=pool.filter(function(s){return inUse.indexOf(s)<0;});
-      if(!free.length)return;
-      var pick=free[Math.floor(Math.random()*free.length)];
-      nxt.onload=function(){nxt.onload=null;nxt.classList.add('on');cur.classList.remove('on');};
-      nxt.src=pick;
-    }
-    if(calm)return;
-    items.forEach(function(item,i){
-      setTimeout(function(){setInterval(function(){if(visible&&!document.hidden)swap(item);},5200+gi*600);},1500+i*900+gi*400);
-    });
-  });
+  if(!window.IntersectionObserver)return;
+  document.querySelectorAll('.hwall').forEach(function(w){
+    new IntersectionObserver(function(e){w.classList.toggle('off',!e[0].isIntersecting);},{threshold:0.05}).observe(w);});
 })();
 </script>
 <div class="draft-tag">Borrador · Presskit Pro</div>
